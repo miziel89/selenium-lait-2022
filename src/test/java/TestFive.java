@@ -74,12 +74,25 @@ public class TestFive {
         Boolean message_is_displayed = driver.findElement(By.xpath("//div[@id='txtAge']")).isDisplayed();
         Assert.assertTrue(message_is_displayed);
         }
+    @Test
+    public void selectCheckBox1() {
+        // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        @Test
-        public void testLocalfile() {
-            driver.get("file:///C:/Users/DELL//Desktop/selenium-lait-2022/home.html");
-            String text = driver.findElement(By.xpath("/html/body/p")).getText();
-            Assert.assertEquals("jestem tekstem", text);
+        driver.manage().window().maximize();
+
+
+        driver.get("https:www.lambdatest.com/selenium-playground/radiobutton-demo");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[type = radio][value = Male][name = gender]")));
+        driver.findElement(By.cssSelector("[type = radio][value = Male][name = gender]")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[type = radio][value = \"0 - 5\"]")));
+        driver.findElement(By.cssSelector("[type = radio][value = \"0 - 5\"]")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='w-8/12 smtablet:w-full left-input mr-20 pr-30 border-r-4 border-black smtablet:border-r-0 smtablet:mr-0 smtablet:pr-0']//button")));
+        driver.findElement(By.xpath("//div[@class='w-8/12 smtablet:w-full left-input mr-20 pr-30 border-r-4 border-black smtablet:border-r-0 smtablet:mr-0 smtablet:pr-0']//button")).click();
+        boolean text = driver.findElement(By.cssSelector(".genderbutton")).isDisplayed();
+        if ( text == true) {
+            System.out.println("Sukces");
+        } else {
+            System.out.println("Coś poszło nie tak...");
         }
-
+    }
 }
